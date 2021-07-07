@@ -1,5 +1,6 @@
 window.onload = () => {
     document.querySelector("#random").onclick = cargarUsuario;
+    document.querySelector("#reset").onclick = resetear;
 };
 
 function cargarUsuario() {
@@ -27,11 +28,17 @@ function cargarUsuario() {
 
 function renderizarDatosUsuario(datos) {
     const usuario = `
-        <img src="${datos.srcImg}" alt="">
-        <h2>${datos.nombre}</h2>
-        <h3>${datos.mail}</h3>
+        <div class="tarjeta">
+            <img src="${datos.srcImg}" alt="">
+            <h2>${datos.nombre}</h2>
+            <h3>${datos.mail}</h3>
+        </div>
     `;
-    document.querySelector(".tarjeta").innerHTML = usuario;
+    document.querySelector(".tarjetas").innerHTML += usuario;
+}
+
+function resetear() {
+    document.querySelector(".tarjetas").innerHTML = "";
 }
 
 function capitalizarTexto(texto) {
