@@ -1,41 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap");
 
 :root {
-    --primary: #7898FF;
-    --secondary: #8E64C5;
-    --app-grey: #F2F2F2;
-  }
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Ubuntu', sans-serif;
+  --primary: #7898ff;
+  --secondary: #8e64c5;
+  --app-grey: #f2f2f2;
 }
 
-body{
-background: linear-gradient(110deg, var(--primary), var(--secondary));
-height: 100vh;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
 }
 
-h1{
+body {
+  background: linear-gradient(110deg, var(--primary), var(--secondary));
+  height: 100vh;
+}
+
+h1 {
   text-align: center;
   margin: 20px 0;
 }
 
-.tarjeta{
+.tarjeta {
   background-color: white;
   border-radius: 20px;
   margin: 0 auto;
-  height: 200px;
+  height: auto;
+  min-height: 300px;
+  padding: 20px;
   width: 50%;
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: 2px 2px 10px black;
+  transition: box-shadow 0.75s;
 }
 
-.btnContainer{
+.btnContainer {
   padding: 20px 0;
   text-align: center;
 }
-.btnContainer button{
-  padding: 5px 15px;
+
+.btnContainer button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  color: aliceblue;
+  background: linear-gradient(120deg, darkblue, purple);
+  background-size: 200px;
+  transition: background-position 1s;
+}
+
+.btnContainer button:hover {
+  background-position: -60px;
+}
+
+.tarjeta:hover {
+  box-shadow: 1px 1px 1px black;
+}
+
+.tarjeta img {
+  border-radius: 50%;
+  width: 100px;
 }

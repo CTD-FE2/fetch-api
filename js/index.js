@@ -1,27 +1,39 @@
-// Aquí realizamos un la consulta de la promesa, esperando su respuesta asíncrona
-fetch('https://randomuser.me/api/')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        //manipulamos la respuesta
-        console.log(data)
-    });
+window.onload = () => {
+    document.querySelector("#random").onclick = cargarUsuario;
+};
 
-function renderizarDatosUsuario(datos) {
-    /* -------------------------------- CONSIGNA 1 -------------------------------- */
-    // Aquí deben desarrollar una función que muestre en pantalla:
-    // la foto, el nombre completo del usuario y su email.
-    // Esto debe estar basado en la info que nos llega desde la API e insertarse en el HTML.
-    
-    
-    
-    
-    
+function cargarUsuario() {
+    fetch('https://randomuser.me/api/')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            const usuario = data.results[0];
+            return {
+                nombre: capitalizarTexto(usuario.name.title + " " + usuario.name.first + " " + usuario.name.last),
+                mail: usuario.email,
+                srcImg: usuario.picture.large
+            }
+        })
+        .then(usuario => {
+            console.log(usuario);
+            renderizarDatosUsuario(usuario);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 
+function renderizarDatosUsuario(datos) {
+    const usuario = `
+        <img src="${datos.srcImg}" alt="">
+        <h2>${datos.nombre}</h2>
+        <h3>${datos.mail}</h3>
+    `;
+    document.querySelector(".tarjeta").innerHTML = usuario;
+}
 
-/* --------------------------- CONSIGNA 2 (extra) --------------------------- */
-// Aqui pueden ir por el punto extra de utilizar el boton que se encuentra comentado en el HTML
-// Pueden descomentar el código del index.html y usar ese boton para ejecutar un nuevo pedido a la API, sin necesidad de recargar la página.
-// Es criterio del equipo QUÉ bloque del código debe contenerse dentro de una función para poder ser ejecutada cada vez que se escuche un click.
+function capitalizarTexto(texto) {
+    return texto.split(" ").map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1)).join(" ");
+}
